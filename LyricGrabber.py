@@ -6,6 +6,7 @@
 
 import requests
 import pandas as pd
+import sys
 
 # Set Lyric Type
 # 0 = jp/ro for standard game usage
@@ -26,8 +27,14 @@ elif pvNumber == "e":
 
 
 # Loads URL
-url = input("input the url\n> ")
-html = requests.get(url).content
+try:
+	url = input("input the url\n> ")
+	html = requests.get(url).content
+except Exception as e:
+	print(e)
+	print("Could not read URL")
+	input("Press enter to close")
+	sys.exit()
 
 # Looks for an HTML table with the English
 try:
@@ -68,7 +75,7 @@ except:
 									print("No lyrics found\nContact testsnake#6663 on discord for more info")
 									# Crashes the program because haha funi
 									input("Press enter to close")
-									l = 0 / 0
+									sys.exit()
 
 
 
